@@ -81,6 +81,8 @@ use yii\bootstrap\ActiveForm;
                         <?= $this->render('_searchPost') ?>
                     </div>
 
+                    <h2><?= Html::a($category->name, ['site/category', 'id' => $category->id]) ?></h2>
+
                         <?php foreach ($posts as $post): ?>
                             <div class="note">
                                 <div class="titleNote">

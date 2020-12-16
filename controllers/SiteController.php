@@ -109,6 +109,7 @@ class SiteController extends Controller
         $model = new ContactForm();
         $message = 'Спасибо за ваше сообщение';
         $categories = Category::find()->all();
+        $category = Category::findOne(['id' => $id]);
         $query = Post::find()->where(['category_id' => $id])->OrderBy(['id' => SORT_DESC]);
         $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3]);
         $posts = $query->offset($pages->offset)->limit($pages->limit)->all();
@@ -120,7 +121,7 @@ class SiteController extends Controller
             return $this->refresh();
         }
 
-        return $this->render('category', compact('posts', 'pages', 'categories', 'model', 'message'));
+        return $this->render('category', compact('category', 'posts', 'pages', 'categories', 'model', 'message'));
     }
 
     public function actionPost($id)
