@@ -5,6 +5,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use app\widgets\Alert;
+use yii\captcha\Captcha;
 
 $this->title = 'Обо мне';
 $this->params['breadcrumbs'][] = $this->title;
@@ -35,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     <li>каскадные таблицы стилей CSS и их препроцессоры,</li>
                     <li>базы данных MySql,</li>
                     <li>среда выполнения языка JavaScript - Node.js,</li>
-                    <li>фполнофункциональный фреймворк для Laravel - Livewire,</li>
+                    <li>полнофункциональный фреймворк для Laravel - Livewire,</li>
                     <li>фреймворк Tailvind CSS,</li>
                     <li>платформа для создания адаптивных сайтов Bootstrap,</li>
                     <li>различные пакеты для Laravel.</li>
@@ -67,8 +68,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
                             <?= $form->field($model, 'email') ?>
 
-                            <?= $form->field($model, 'body')->textarea(['rows' => 6])->label('Сообщение') ?>
+                            <?= $form->field($model, 'body')->textarea(['rows' => 2])->label('Сообщение') ?>
 
+                            <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                            ]) ?>
                             <div class="form-group">
                                 <?= Html::submitButton('Отправить', ['class' => 'btn btn-danger', 'name' => 'contact-button']) ?>
                             </div>

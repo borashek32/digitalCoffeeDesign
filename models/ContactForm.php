@@ -10,6 +10,7 @@ class ContactForm extends Model
     public $name;
     public $email;
     public $body;
+    public $verifyCode;
 
     public function rules()
     {
@@ -17,6 +18,14 @@ class ContactForm extends Model
             [['name', 'email', 'body'], 'required'],
             ['body', 'string', 'min' => 20],
             ['email', 'email'],
+            ['verifyCode', 'captcha'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'verifyCode' => 'Введите код для отправки сообщения',
         ];
     }
 

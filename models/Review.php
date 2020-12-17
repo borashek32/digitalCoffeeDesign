@@ -14,6 +14,7 @@ use Yii;
  */
 class Review extends \yii\db\ActiveRecord
 {
+    public $verifyCode;
     /**
      * {@inheritdoc}
      */
@@ -31,6 +32,7 @@ class Review extends \yii\db\ActiveRecord
             [['date', 'name', 'review'], 'required'],
             [['date'], 'safe'],
             [['name', 'review'], 'string'],
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -44,6 +46,7 @@ class Review extends \yii\db\ActiveRecord
             'date' => 'Date',
             'name' => 'Name',
             'review' => 'Review',
+            'verifyCode' => 'Введите код для отправки сообщения',
         ];
     }
 }

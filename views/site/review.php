@@ -5,6 +5,7 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use app\widgets\Alert;
+use yii\captcha\Captcha;
 
 $this->title = 'Отзывы';
 $this->params['breadcrumbs'][] = $this->title;
@@ -31,6 +32,9 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::tag('p', Html::encode($review->name), ['class' => 'footerText']) ?>
 
                             <?= Html::tag('p', Html::encode($review->review), ['class' => 'footerText']) ?>
+                            <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+                                'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+                            ]) ?>
                         </div>
                     </div>
                 <?php endforeach; ?>
